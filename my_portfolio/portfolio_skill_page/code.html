@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skills Dashboard | Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8a2ce2",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(138, 44, 226, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation -->
+<aside class="w-72 flex-shrink-0 border-r border-slate-200 dark:border-primary/20 bg-white dark:bg-background-dark flex flex-col justify-between p-6">
+<div class="flex flex-col gap-8">
+<!-- User Profile -->
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-400 p-0.5">
+<img alt="Alex Dev Profile" class="w-full h-full rounded-full object-cover" data-alt="Professional portrait of a male software engineer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM6DnDz3knNTb8cjCBQ_W7XyQvcBorEswujkQAcz0-I2agYSqWFo66RA4j2dzWTYMx75pFkR8bVRMODfJP6pHrae-6Rowbt0avOUGlP_V7WobJiujUwY7khgkDIGTPLmStLWVJCR0TJRaItPqPNmy2H_gVZagwcdE15tuaSVQbX5jOggXnotyOY1N_7rSWROs-I9jMtCJ_EJO2PopKdq8lPidaWogKX3sStxhn2zDWkjzQ9FCikiJYNuRJRQTT5xgX3DOzGSv0R3o"/>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">Alex Dev</h1>
+<p class="text-slate-500 dark:text-primary/70 text-xs font-medium">Full Stack Engineer</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="text-sm font-semibold">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/25 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">memory</span>
+<span class="text-sm font-semibold">Skills</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">work</span>
+<span class="text-sm font-semibold">Experience</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-primary/10 text-slate-600 dark:text-slate-400 transition-all group" href="#">
+<span class="material-symbols-outlined text-xl">mail</span>
+<span class="text-sm font-semibold">Contact</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-slate-100 dark:bg-primary/20 text-slate-900 dark:text-white rounded-xl py-3 px-4 flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all group">
+<span class="material-symbols-outlined text-sm">download</span>
+<span class="text-sm font-bold">Download CV</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-20 border-b border-slate-200 dark:border-primary/10 flex items-center justify-between px-10 bg-white/50 dark:bg-background-dark/50 backdrop-blur-md z-10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>
+<h2 class="text-lg font-extrabold tracking-tight">Skills Proficiency</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-slate-100 dark:bg-primary/10 border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search skills..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2.5 rounded-xl bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-slate-300 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2.5 rounded-xl bg-slate-100 dark:bg-primary/10 text-slate-600 dark:text-slate-300 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-10 custom-scrollbar">
+<!-- Page Title & Intro -->
+<div class="mb-10 max-w-2xl">
+<h3 class="text-4xl font-black mb-3 text-slate-900 dark:text-white tracking-tight">Technical Proficiency</h3>
+<p class="text-slate-500 dark:text-slate-400 text-lg">A comprehensive breakdown of my engineering capabilities and technological expertise across the full stack.</p>
+</div>
+<!-- Category Tabs -->
+<div class="flex border-b border-slate-200 dark:border-primary/20 mb-10 overflow-x-auto whitespace-nowrap gap-8 scrollbar-hide">
+<button class="pb-4 border-b-2 border-primary text-primary font-bold text-sm tracking-wide">FRONTEND</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-bold text-sm tracking-wide transition-all">BACKEND</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-bold text-sm tracking-wide transition-all">CORE LANGUAGES</button>
+<button class="pb-4 border-b-2 border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-bold text-sm tracking-wide transition-all">DEV TOOLS</button>
+</div>
+<!-- Skills Grid Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Skill Card: React -->
+<div class="bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-blue-500/10 rounded-xl">
+<span class="material-symbols-outlined text-blue-500 text-2xl">rocket_launch</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Advanced</span>
+</div>
+<h4 class="text-xl font-bold mb-1">React / Next.js</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs mb-6">Component architecture, SSR, and state management.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+<span>Mastery</span>
+<span class="text-primary">92%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-primary/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+<!-- Skill Card: Tailwind -->
+<div class="bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-cyan-500/10 rounded-xl">
+<span class="material-symbols-outlined text-cyan-500 text-2xl">palette</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Expert</span>
+</div>
+<h4 class="text-xl font-bold mb-1">Tailwind CSS</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs mb-6">Utility-first styling, design systems, and responsive layouts.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+<span>Mastery</span>
+<span class="text-primary">98%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-primary/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+<!-- Skill Card: TypeScript -->
+<div class="bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-blue-600/10 rounded-xl">
+<span class="material-symbols-outlined text-blue-600 text-2xl">shield</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Advanced</span>
+</div>
+<h4 class="text-xl font-bold mb-1">TypeScript</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs mb-6">Static typing, generic interfaces, and utility types.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+<span>Mastery</span>
+<span class="text-primary">88%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-primary/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+<!-- Skill Card: GraphQL -->
+<div class="bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-pink-500/10 rounded-xl">
+<span class="material-symbols-outlined text-pink-500 text-2xl">hub</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Intermediate</span>
+</div>
+<h4 class="text-xl font-bold mb-1">GraphQL</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs mb-6">Schema design, mutations, and Apollo Client integration.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+<span>Mastery</span>
+<span class="text-primary">75%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-primary/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+<!-- Skill Card: Three.js -->
+<div class="bg-white dark:bg-primary/5 border border-slate-200 dark:border-primary/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-primary/5 transition-all">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 bg-white/10 rounded-xl">
+<span class="material-symbols-outlined text-slate-900 dark:text-white text-2xl">view_in_ar</span>
+</div>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-1 rounded-full uppercase tracking-tighter">Learning</span>
+</div>
+<h4 class="text-xl font-bold mb-1">Three.js / WebGL</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs mb-6">3D web experiences, shaders, and geometry rendering.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider text-slate-400">
+<span>Mastery</span>
+<span class="text-primary">45%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-primary/20 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Add Skill Placeholder -->
+<button class="border-2 border-dashed border-slate-200 dark:border-primary/20 rounded-2xl p-6 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-primary/5 transition-all group">
+<div class="p-3 bg-slate-100 dark:bg-primary/10 rounded-full group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="text-sm font-bold text-slate-400 group-hover:text-primary">Add New Skill</span>
+</button>
+</section>
+<!-- Footer Summary -->
+<footer class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-primary/10 to-transparent border border-primary/20 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">workspace_premium</span>
+</div>
+<div>
+<h5 class="text-xl font-bold">Certification Path</h5>
+<p class="text-sm text-slate-500 dark:text-slate-400">Top 5% Global Assessment Score in Frontend Development (HackerRank)</p>
+</div>
+</div>
+<button class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                        View Certifications
+                    </button>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

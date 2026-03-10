@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Designer Portfolio Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8a2ce2",
+                        "secondary": "#d43f8d",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191121",
+                        "surface-dark": "#251a30",
+                        "accent-purple": "#a855f7",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(138, 44, 226, 0.2) 0%, rgba(212, 63, 141, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 flex-shrink-0 border-r border-white/5 bg-background-dark flex flex-col justify-between p-6">
+<div class="flex flex-col gap-8">
+<!-- Profile Section -->
+<div class="flex flex-col items-center gap-4 text-center">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary to-secondary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative aspect-square size-24 rounded-full border-2 border-primary/20 bg-cover bg-center overflow-hidden" data-alt="Professional headshot of a smiling designer with short dark hair" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBnl7yVYV7OazpTFx1hXv30DL1pLqQoRMeL0PZJ1TkRnJwGvK871xL1XiSW1kPjyDnXdUWlJedAIMKOCXkmbZEgLDaZgM6wsmuG879ubv_ZK6-vqM9oiz6pACOXcnmJqY05D7fF6e_JXBcZhtwZkXMohEsHCzkoI3mE-U_XfoRXgQ5BZDyidNeXCbdTS3P63ZGXBrEs0YZ1tMbKTJqAU3xf1DHmd-DMWUmDzGfRW31hSx98MW9StCIGITzJ9qKH130LBF-efsBnzcA')">
+</div>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-white">Julian Vance</h1>
+<p class="text-slate-400 text-sm">Senior Product Designer</p>
+</div>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary transition-all" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-medium">Portfolio</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Experience</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-medium">Testimonials</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+<span class="font-medium">Contact</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Bottom Action -->
+<button class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>Download Resume</span>
+</button>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-background-dark custom-scrollbar">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center justify-between px-10 py-6 bg-background-dark/80 backdrop-blur-md border-b border-white/5">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+<h2 class="text-xl font-bold text-white tracking-tight">Overview</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="bg-surface-dark border-none rounded-xl pl-10 pr-4 py-2 w-64 text-sm focus:ring-1 focus:ring-primary text-slate-300" placeholder="Search projects..." type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="size-10 flex items-center justify-center rounded-xl bg-surface-dark text-slate-400 hover:text-white border border-white/5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-xl bg-surface-dark text-slate-400 hover:text-white border border-white/5">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<div class="p-10 space-y-8">
+<!-- Hero Section -->
+<section class="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end p-10 hero-gradient border border-white/5 group">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=1200')] bg-cover bg-center mix-blend-overlay opacity-30 grayscale group-hover:scale-105 transition-transform duration-1000" data-alt="Abstract dark purple and pink 3D fluid wave patterns"></div>
+<div class="relative z-10 max-w-2xl space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold tracking-widest uppercase">
+                            Available for projects
+                        </div>
+<h1 class="text-5xl lg:text-6xl font-black text-white leading-tight">
+                            Designing Digital <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Experiences with Purpose</span>
+</h1>
+<p class="text-slate-300 text-lg leading-relaxed">
+                            I'm Julian Vance, a designer focused on crafting intuitive user interfaces and impactful design systems that bridge the gap between human needs and business goals.
+                        </p>
+<div class="flex gap-4">
+<button class="px-8 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all">View Case Studies</button>
+<button class="px-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 transition-all">Let's Talk</button>
+</div>
+</div>
+</section>
+<!-- Grid Widgets -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- About/Story (Glassmorphism) -->
+<div class="lg:col-span-8 glass-card rounded-3xl p-8 relative overflow-hidden group">
+<div class="absolute -right-20 -top-20 size-64 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="relative z-10 space-y-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">auto_stories</span>
+<h3 class="text-2xl font-bold text-white tracking-tight">My Story</h3>
+</div>
+<p class="text-slate-300 text-base leading-relaxed">
+                                With over 8 years of experience in the design industry, my journey started with a fascination for how colors and shapes influence human behavior. Today, I blend aesthetics with usability to create impactful designs. I've had the privilege of working with global startups and established tech giants, helping them redefine their digital presence through design-led innovation.
+                            </p>
+<div class="flex items-center gap-6 pt-4">
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-white">120+</span>
+<span class="text-slate-400 text-sm">Projects Delivered</span>
+</div>
+<div class="h-10 w-[1px] bg-white/10"></div>
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-white">12</span>
+<span class="text-slate-400 text-sm">Design Awards</span>
+</div>
+<div class="h-10 w-[1px] bg-white/10"></div>
+<div class="flex flex-col">
+<span class="text-2xl font-bold text-white">8+</span>
+<span class="text-slate-400 text-sm">Years Experience</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Widgets Column -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Location Widget -->
+<div class="bg-surface-dark border border-white/5 rounded-3xl p-6 flex items-center gap-4 group">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="text-slate-400 text-xs font-bold uppercase tracking-widest">Current Location</h4>
+<p class="text-white font-bold text-lg" data-location="San Francisco, USA">San Francisco, CA</p>
+</div>
+</div>
+<!-- Education Widget -->
+<div class="bg-surface-dark border border-white/5 rounded-3xl p-6 flex items-center gap-4 group">
+<div class="size-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h4 class="text-slate-400 text-xs font-bold uppercase tracking-widest">Education</h4>
+<p class="text-white font-bold text-lg">RISD — BFA Design</p>
+</div>
+</div>
+<!-- Interests/Tech Stack -->
+<div class="bg-surface-dark border border-white/5 rounded-3xl p-6 space-y-4">
+<h4 class="text-slate-400 text-xs font-bold uppercase tracking-widest">Core Interests</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">UX Strategy</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">Design Systems</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">Micro-interactions</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">3D Visuals</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">AR/VR</span>
+<span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-medium text-slate-300">Typography</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Work Preview -->
+<section class="space-y-6 pb-10">
+<div class="flex items-center justify-between">
+<h3 class="text-2xl font-bold text-white tracking-tight">Recent Projects</h3>
+<a class="text-primary hover:text-secondary font-bold text-sm transition-colors" href="#">See all projects →</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group rounded-2xl overflow-hidden border border-white/5 bg-surface-dark transition-all hover:-translate-y-1">
+<div class="aspect-video bg-cover bg-center" data-alt="Modern dark analytics dashboard UI mockup with vibrant charts" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDV-0Ctvmby1rizV60uD7Af1dt1HSUyQhmVuEnbV3FUg2uruloylx_CHh6aQL2ICfGkBQX6JjPOpE8NmUokmZIVypAMcOG0AcXudddk2HceHEKe7sP4nf6S6AfwLrqlQe9nSpGICtgkwHrSPxe-QmUDx0IxokHlMg_AqwvacWtipSe4BOXVQ_QTTfffV5amqK5qWuZF2S26jQsZRf6PPbFc-_Psj2bTiwaerwDYZDOSr6-pKQzPFUwN4u8pJBVuv1lXTX1FitmAQmA')"></div>
+<div class="p-6">
+<h4 class="text-white font-bold mb-1">Neptune Analytics</h4>
+<p class="text-slate-400 text-sm">SaaS Dashboard &amp; System</p>
+</div>
+</div>
+<div class="group rounded-2xl overflow-hidden border border-white/5 bg-surface-dark transition-all hover:-translate-y-1">
+<div class="aspect-video bg-cover bg-center" data-alt="Clean and minimalist e-commerce mobile app design screens" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIKcsLdU6Z5a11WEbu0kSiPkGMeISjLAh0Or5ILhoVff0NW0NJ8GAU_QP20x2LS0rEANc_uyLSfG2Fb8uOvBrSMgWp7SMZD9XrF8fdu8R3RWl6_FteIiwK5gKFnmiPd3C2Ot2NnZCs7oRbOrT6h-in62iGqoR3r-ERmx4kb-QaQYUy1ZH4jcPUujt16x0wmfRO907fOqQujlPMHttWKtNJUqGtnD82jNqygQ0pAc6BV9Qbn5bRjVoYCznNlf0hrFaxCKwYCXjv5J4')"></div>
+<div class="p-6">
+<h4 class="text-white font-bold mb-1">Vogue Store</h4>
+<p class="text-slate-400 text-sm">Mobile App Experience</p>
+</div>
+</div>
+<div class="group rounded-2xl overflow-hidden border border-white/5 bg-surface-dark transition-all hover:-translate-y-1">
+<div class="aspect-video bg-cover bg-center" data-alt="Abstract colorful light streaks on a dark background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX8N8SzVMc0A2znqwMN39bSb9EVBc2T2b7tGYeXGakE5DNSawSBPnRN05HrIg-f2v63kv0SjJedw4clh8UJowUIWaSpQvPhoAyta384NRcFR8VrA4eOV3SUX-Sg1FmZE5_zz9HLNqxp-he49RkTa4esy9mH5GjkrGoMYKvUmS1zAru3amQ9y2uZ5EYqC3wru2KucSPSXRVetf8AUwXgDKMKSrokWcu9L-36WutgmoB1M_T6pJJm3lpe-vlAMmr3Gx3M2-oSvKwO3Y')"></div>
+<div class="p-6">
+<h4 class="text-white font-bold mb-1">AuraOS</h4>
+<p class="text-slate-400 text-sm">Operating System Identity</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
