@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getProfile } from '../lib/supabase'
 import QuoteGenerator from '../components/QuoteGenerator'
-import VisitorCounter from '../components/VisitorCounter'
 
 export default function Home() {
   const [profile, setProfile] = useState(null)
@@ -25,17 +24,14 @@ export default function Home() {
 
   return (
     <>
-      <header className="sticky top-0 z-10 glass px-6 md:px-8 py-4 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-10 glass px-6 md:px-8 py-4 flex items-center justify-between">
         <h1 className="text-xl font-bold">Overview</h1>
-        <div className="flex items-center gap-4">
-          <VisitorCounter />
-          <Link
-            to="/contact"
-            className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
-          >
-            Let's Talk
-          </Link>
-        </div>
+        <Link
+          to="/contact"
+          className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
+        >
+          Let's Talk
+        </Link>
       </header>
 
       <div className="p-6 md:p-10 space-y-8 max-w-6xl mx-auto">
