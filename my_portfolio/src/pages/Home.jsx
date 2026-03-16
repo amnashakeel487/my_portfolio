@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getProfile } from '../lib/supabase'
+import QuoteGenerator from '../components/QuoteGenerator'
 
 export default function Home() {
   const [profile, setProfile] = useState(null)
@@ -160,6 +161,8 @@ export default function Home() {
             )}
           </div>
         </section>
+
+        <QuoteGenerator />
       </div>
     </>
   )
