@@ -217,3 +217,50 @@ export async function deleteContactMessage(id) {
   if (!supabase) return { error: { message: 'Not configured' } }
   return await supabase.from('contact_messages').delete().eq('id', id)
 }
+
+// --- Visitor counter ---
+export async function getVisitorCount() {
+  if (!supabase) return 0
+  const { data, error } = await supabase.from('visitors').select('id, count').limit(1).maybeSingle()
+  if (error || !data) return 0
+  return data.count ?? 0
+}
+
+export async function incrementVisitorCount() {
+  if (!supabase) return 0
+
+  // Get existing row or create it
+  let { data, error } = await supabase.from('visitors').select('id, count').limit(1).maybeSingle()
+
+  if (error) {
+    console.error('Error reading visitors table', error)
+  }
+
+  if (!data) {
+    const { data: inserted, error: insertError } = await supabase
+      .from('visitors')
+      .insert({ count: 1 })
+      .select('count')
+      .single()
+    if (insertError) {
+      console.error('Error inserting visitors row', insertError)
+      return 1
+    }
+    return inserted?.count ?? 1
+  }
+
+  const newCount = (data.count ?? 0) + 1
+  const { data: updated, error: updateError } = await supabase
+    .from('visitors')
+    .update({ count: newCount })
+    .eq('id', data.id)
+    .select('count')
+    .single()
+
+  if (updateError) {
+    console.error('Error updating visitors row', updateError)
+    return newCount
+  }
+
+  return updated?.count ?? newCount
+}

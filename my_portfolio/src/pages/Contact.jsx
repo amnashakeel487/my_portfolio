@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { submitContactMessage, getProfile } from '../lib/supabase'
+import VisitorCounter from '../components/VisitorCounter'
 
 export default function Contact() {
   const [profile, setProfile] = useState(null)
@@ -33,15 +34,78 @@ export default function Contact() {
         <h1 className="text-xl font-bold">Contact</h1>
       </header>
 
-      <div className="p-6 md:p-8 max-w-2xl mx-auto">
-        <div className="mb-10">
+      <div className="p-6 md:p-8 max-w-5xl mx-auto">
+        <div className="mb-10 max-w-2xl">
           <h2 className="text-3xl font-black tracking-tight mb-2">Get in Touch</h2>
           <p className="text-slate-500 dark:text-slate-400">
             Have a project in mind or want to collaborate? Send me a message and I'll get back to you.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          {/* Reach me card on the left */}
+          <div className="md:col-span-1 p-6 rounded-xl glass border border-primary/10">
+            <p className="text-slate-400 text-sm mb-4">
+              You can also reach me at{' '}
+              <a href={profile?.email ? `mailto:${profile.email}` : '#'} className="text-primary font-medium hover:underline">
+                {profile?.email || 'hello@portfolio.com'}
+              </a>
+              {(profile?.linkedin_url || profile?.github_url) && ' or connect via:'}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {profile?.linkedin_url && (
+                <a
+                  href={profile.linkedin_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all text-sm"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedInIcon />
+                  <span className="font-medium">LinkedIn</span>
+                </a>
+              )}
+              {profile?.github_url && (
+                <a
+                  href={profile.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all text-sm"
+                  aria-label="GitHub"
+                >
+                  <GitHubIcon />
+                  <span className="font-medium">GitHub</span>
+                </a>
+              )}
+              {profile?.twitter_url && (
+                <a
+                  href={profile.twitter_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all text-sm"
+                  aria-label="Twitter"
+                >
+                  <TwitterIcon />
+                  <span className="font-medium">Twitter</span>
+                </a>
+              )}
+              {profile?.youtube_url && (
+                <a
+                  href={profile.youtube_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all text-sm"
+                  aria-label="YouTube"
+                >
+                  <YouTubeIcon />
+                  <span className="font-medium">YouTube</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Form on the right */}
+          <form onSubmit={handleSubmit} className="space-y-6 md:col-span-2">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">Name</label>
             <input
@@ -122,65 +186,6 @@ export default function Contact() {
             )}
           </button>
         </form>
-
-        <div className="mt-12 p-6 rounded-xl glass border border-primary/10">
-          <p className="text-slate-400 text-sm mb-4">
-            You can also reach me at{' '}
-            <a href={profile?.email ? `mailto:${profile.email}` : '#'} className="text-primary font-medium hover:underline">
-              {profile?.email || 'hello@portfolio.com'}
-            </a>
-            {(profile?.linkedin_url || profile?.github_url) && ' or connect via:'}
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {profile?.linkedin_url && (
-              <a
-                href={profile.linkedin_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                aria-label="LinkedIn"
-              >
-                <LinkedInIcon />
-                <span className="font-medium">LinkedIn</span>
-              </a>
-            )}
-            {profile?.github_url && (
-              <a
-                href={profile.github_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                aria-label="GitHub"
-              >
-                <GitHubIcon />
-                <span className="font-medium">GitHub</span>
-              </a>
-            )}
-            {profile?.twitter_url && (
-              <a
-                href={profile.twitter_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                aria-label="Twitter"
-              >
-                <TwitterIcon />
-                <span className="font-medium">Twitter</span>
-              </a>
-            )}
-            {profile?.youtube_url && (
-              <a
-                href={profile.youtube_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-primary/20 text-slate-300 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all"
-                aria-label="YouTube"
-              >
-                <YouTubeIcon />
-                <span className="font-medium">YouTube</span>
-              </a>
-            )}
-          </div>
         </div>
       </div>
     </>

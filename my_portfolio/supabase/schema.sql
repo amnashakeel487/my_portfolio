@@ -103,6 +103,13 @@ create table if not exists public.contact_messages (
   created_at timestamptz default now()
 );
 
+-- Visitor counter (single-row table)
+create table if not exists public.visitors (
+  id uuid primary key default uuid_generate_v4(),
+  count integer not null default 0,
+  created_at timestamptz default now()
+);
+
 -- Enable RLS (Row Level Security)
 alter table public.profiles enable row level security;
 alter table public.education enable row level security;
@@ -112,6 +119,7 @@ alter table public.projects enable row level security;
 alter table public.skills enable row level security;
 alter table public.services enable row level security;
 alter table public.contact_messages enable row level security;
+alter table public.visitors enable row level security;
 
 -- Public read for all content (portfolio is public)
 create policy "Public read profiles" on public.profiles for select using (true);
@@ -121,9 +129,14 @@ create policy "Public read honors" on public.honors for select using (true);
 create policy "Public read projects" on public.projects for select using (true);
 create policy "Public read skills" on public.skills for select using (true);
 create policy "Public read services" on public.services for select using (true);
+create policy "Public read visitors" on public.visitors for select using (true);
 
 -- Anyone can insert contact messages
 create policy "Anyone can insert contact_messages" on public.contact_messages for insert with check (true);
+
+-- Anyone (anon) can insert/update visitors
+create policy "Anon upsert visitors" on public.visitors
+for insert, update using (true) with check (true);
 
 -- Only authenticated users can update profiles (optional; use service role for admin)
 -- For simplicity we allow anon to update if you use service key in admin. Or add auth later.
