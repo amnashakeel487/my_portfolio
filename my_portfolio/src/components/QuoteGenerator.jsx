@@ -1,5 +1,24 @@
 import { useEffect, useState } from 'react'
 
+const FALLBACK_QUOTES = [
+  {
+    content: ' First, solve the problem. Then, write the code.',
+    author: 'John Johnson',
+  },
+  {
+    content: ' Code is like humor. When you have to explain it, it’s bad.',
+    author: 'Cory House',
+  },
+  {
+    content: ' The only way to learn a new programming language is by writing programs in it.',
+    author: 'Dennis Ritchie',
+  },
+  {
+    content: ' Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.',
+    author: 'Antoine de Saint-Exupéry',
+  },
+]
+
 export default function QuoteGenerator() {
   const [quote, setQuote] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -21,8 +40,14 @@ export default function QuoteGenerator() {
         author: data.author || 'Unknown',
       })
     } catch (err) {
-      setError(err.message || 'Something went wrong while fetching a quote.')
-      setQuote(null)
+      const message = err?.message || 'Something went wrong while fetching a quote.'
+
+      // Use a local fallback quote so the card is never empty
+      const fallback =
+        FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)]
+
+      setError(message)
+      setQuote(fallback)
     } finally {
       setLoading(false)
     }
