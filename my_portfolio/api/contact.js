@@ -15,7 +15,9 @@ async function sendEmailNotification({ name, email, subject, message }) {
   if (!emailUser || !emailPass) return
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     auth: {
       user: emailUser,
       pass: emailPass,

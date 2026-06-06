@@ -99,8 +99,27 @@ export async function getServices() {
 }
 
 export async function submitContactMessage({ name, email, subject, message }) {
+  const payload = { name, email, subject, message }
+
+  // Use server API so email/WhatsApp notifications can run (Vercel /api/contact)
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    if (response.ok) {
+      const data = await response.json()
+      return { ok: data.ok !== false, error: data.error }
+    }
+    const data = await response.json().catch(() => ({}))
+    return { ok: false, error: data.error || 'Failed to send message' }
+  } catch {
+    // Fallback when API is unavailable (e.g. local Vite without vercel dev)
+  }
+
   if (!supabase) return { ok: false, error: 'Supabase not configured' }
-  const { error } = await supabase.from('contact_messages').insert({ name, email, subject, message })
+  const { error } = await supabase.from('contact_messages').insert(payload)
   return { ok: !error, error: error?.message }
 }
 
