@@ -35,12 +35,12 @@ export default function QuoteGenerator() {
   const quote = getQuoteForToday()
 
   return (
-    <section className="py-10">
+    <section className="py-6">
       <div className="max-w-3xl mx-auto text-center">
-        <p className="text-2xl md:text-3xl font-semibold text-white leading-relaxed">
+        <p className="text-xl md:text-2xl font-medium text-white leading-relaxed">
           “{quote.content}”
         </p>
-        <p className="mt-3 text-sm md:text-base font-medium text-primary">
+        <p className="mt-3 text-sm font-medium text-purple-text">
           — {quote.author}
         </p>
       </div>

@@ -1,19 +1,26 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getProfile } from '../lib/supabase'
+import { getProfile, getProjects, getAllSkills } from '../lib/supabase'
 import QuoteGenerator from '../components/QuoteGenerator'
+
+const TECH_STACK = ['MongoDB', 'Express.js', 'React', 'Node.js', 'OpenAI API', 'Tailwind CSS']
 
 export default function Home() {
   const [profile, setProfile] = useState(null)
+  const [projectCount, setProjectCount] = useState(0)
+  const [skillCount, setSkillCount] = useState(0)
 
   useEffect(() => {
     getProfile().then(setProfile)
+    getProjects().then(p => setProjectCount(p?.length || 0))
+    getAllSkills().then(s => setSkillCount(s?.length || 0))
   }, [])
 
   const name = profile?.full_name || 'Your Name'
   const tagline = profile?.tagline || 'Creative Designer & Developer'
   const bioShort = profile?.bio_short || "Designing digital experiences with purpose. I blend aesthetics with usability to create impactful designs."
   const location = profile?.location || 'San Francisco, CA'
+  const experience = profile?.experience_years || '8+ Years'
 
   const socialLinks = [
     { key: 'linkedin', label: 'LinkedIn', url: profile?.linkedin_url, icon: LinkedInIcon },
@@ -22,123 +29,157 @@ export default function Home() {
     { key: 'youtube', label: 'YouTube', url: profile?.youtube_url, icon: YouTubeIcon },
   ]
 
-  return (
-    <>
-      <header className="sticky top-0 z-10 glass px-6 md:px-8 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold">Overview</h1>
-        <Link
-          to="/contact"
-          className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-all"
-        >
-          Let's Talk
-        </Link>
-      </header>
+  const stats = [
+    { value: projectCount || '10+', label: 'Projects' },
+    { value: experience.replace(/ experience/i, ''), label: 'Years Experience' },
+    { value: skillCount || '15+', label: 'Technologies' },
+    { value: '98%', label: 'Client Satisfaction' },
+  ]
 
-      <div className="p-6 md:p-10 space-y-8 max-w-6xl mx-auto">
-        {/* Hero - pic left, text right */}
-        <section className="relative rounded-3xl overflow-hidden min-h-[380px] flex flex-col md:flex-row items-center gap-8 md:gap-12 p-8 md:p-12 bg-gradient-to-b from-background-dark via-primary/10 to-background-dark border border-white/5">
-          <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-primary/30 flex-shrink-0 shadow-xl shadow-primary/20 order-2 md:order-1 bg-slate-800 flex items-center justify-center">
-            {profile?.avatar_url ? (
-              <img src={profile.avatar_url} alt={name} className="w-full h-full object-cover" />
-            ) : (
-              <span className="material-symbols-outlined text-6xl md:text-7xl text-slate-500">person</span>
-            )}
-          </div>
-          <div className="flex-1 text-center md:text-left order-1 md:order-2">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background-dark/80 border border-primary/30 mb-4">
-              <span className="size-2 rounded-full bg-primary" />
-              <span className="text-white text-xs font-bold tracking-widest uppercase">Available for new opportunities</span>
+  return (
+    <div className="relative overflow-hidden">
+      {/* Background orbs */}
+      <div className="orb w-72 h-72 bg-purple-600/20 -top-20 -left-20" style={{ animationDelay: '0s' }} />
+      <div className="orb w-96 h-96 bg-pink-600/10 top-40 -right-32" style={{ animationDelay: '2s' }} />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-20 space-y-16">
+
+        {/* ── Hero ── */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left */}
+          <div>
+            <div className="badge-available mb-6 animate-fade-up">
+              <span className="pulse-dot" />
+              Available for new opportunities
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-2">
+
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-3 animate-fade-up-delay-1"
+              style={{ letterSpacing: '-1.5px' }}
+            >
               {tagline.split(/[&,]/)[0].trim()}
             </h1>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-primary leading-tight mb-4">
+
+            <p className="text-3xl md:text-4xl font-black gradient-text mb-4 animate-fade-up-delay-2">
               Architecting the Web
-            </h2>
-            <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+            </p>
+
+            <p className="typewriter text-purple-text text-lg font-medium mb-6 animate-fade-up-delay-2">
+              {tagline}
+            </p>
+
+            <p className="text-muted text-base leading-relaxed mb-8 animate-fade-up-delay-3">
               Hi, I'm {name.split(' ')[0]}. {bioShort}
             </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <Link to="/projects" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+
+            <div className="flex flex-wrap gap-4 mb-8 animate-fade-up-delay-3">
+              <Link to="/projects" className="btn-gradient inline-flex items-center gap-2">
                 View my work
-                <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                <span className="material-symbols-outlined text-lg">arrow_forward</span>
               </Link>
-              <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 text-white font-bold border border-slate-500 hover:bg-white/10 hover:border-slate-400 transition-all">
+              <Link to="/contact" className="btn-outline inline-flex items-center gap-2">
                 Get in touch
               </Link>
+            </div>
+
+            <div className="flex flex-wrap gap-2 animate-fade-up-delay-4">
+              {TECH_STACK.map(tech => (
+                <span key={tech} className="tech-pill">{tech}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Avatar */}
+          <div className="flex justify-center lg:justify-end animate-fade-up-delay-2">
+            <div className="avatar-wrapper">
+              <div className="avatar-border">
+                <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden bg-card-surface flex items-center justify-center">
+                  {profile?.avatar_url ? (
+                    <img src={profile.avatar_url} alt={name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="material-symbols-outlined text-7xl text-muted">person</span>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* ── Stats strip ── */}
+        <section className="card-surface grid grid-cols-2 md:grid-cols-4 overflow-hidden">
+          {stats.map(({ value, label }, i) => (
+            <div
+              key={label}
+              className={`py-8 px-6 text-center stat-divider ${i % 2 === 1 ? 'border-r-0 md:border-r' : ''}`}
+            >
+              <p className="text-3xl md:text-4xl font-black text-white mb-1">{value}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-muted">{label}</p>
+            </div>
+          ))}
+        </section>
+
         <QuoteGenerator />
 
-        {/* Quick stats + About teaser */}
+        {/* ── My Story + Location/Experience ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <section className="lg:col-span-8 glass-card rounded-3xl p-8 relative overflow-hidden">
-            <div className="absolute -right-20 -top-20 size-64 bg-primary/20 blur-[100px] rounded-full" />
-            <div className="relative z-10 space-y-4">
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-secondary">auto_stories</span>
-                <h2 className="text-2xl font-bold text-white tracking-tight">My Story</h2>
-              </div>
-              <p className="text-slate-300 leading-relaxed">
-                {profile?.bio?.slice(0, 280) || "With over 8 years of experience in the design industry, my journey started with a fascination for how colors and shapes influence human behavior. Today, I blend aesthetics with usability to create impactful designs."}
-                ...
-              </p>
-              <Link to="/about" className="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
-                Read full story <span className="material-symbols-outlined text-lg">arrow_forward</span>
-              </Link>
+          <section className="lg:col-span-8 card-surface p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="material-symbols-outlined text-purple-text">auto_stories</span>
+              <h2 className="text-2xl font-bold text-white">My Story</h2>
             </div>
+            <p className="text-muted leading-relaxed mb-4">
+              {profile?.bio?.slice(0, 280) || "With over 8 years of experience in the design industry, my journey started with a fascination for how colors and shapes influence human behavior. Today, I blend aesthetics with usability to create impactful designs."}
+              ...
+            </p>
+            <Link to="/about" className="inline-flex items-center gap-2 text-purple-text font-semibold hover:text-purple-light">
+              Read full story <span className="material-symbols-outlined text-lg">arrow_forward</span>
+            </Link>
           </section>
-          <div className="lg:col-span-4 flex flex-col gap-6">
-            <div className="bg-surface-dark dark:bg-card-dark border border-white/5 rounded-3xl p-6 flex items-center gap-4">
-              <div className="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined">location_on</span>
+
+          <div className="lg:col-span-4 flex flex-col gap-4">
+            <div className="card-surface p-6 flex items-center gap-4">
+              <div className="size-12 rounded-xl icon-gradient-box">
+                <span className="material-symbols-outlined text-white">location_on</span>
               </div>
               <div>
-                <h4 className="text-slate-400 text-xs font-bold uppercase tracking-widest">Location</h4>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted">Location</p>
                 <p className="text-white font-bold text-lg">{location}</p>
               </div>
             </div>
-            <div className="bg-surface-dark dark:bg-card-dark border border-white/5 rounded-3xl p-6 flex items-center gap-4">
-              <div className="size-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
-                <span className="material-symbols-outlined">work</span>
+            <div className="card-surface p-6 flex items-center gap-4">
+              <div className="size-12 rounded-xl icon-gradient-box">
+                <span className="material-symbols-outlined text-white">work</span>
               </div>
               <div>
-                <h4 className="text-slate-400 text-xs font-bold uppercase tracking-widest">Experience</h4>
-                <p className="text-white font-bold text-lg">{profile?.experience_years || '8+ Years'}</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted">Experience</p>
+                <p className="text-white font-bold text-lg">{experience}</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Download Resume + Contact + Follow Me */}
-        <section className="space-y-6 pb-10">
+        {/* ── Resume + Follow Me ── */}
+        <section className="space-y-6 pb-4">
           <div className="flex flex-wrap gap-4">
             <a
               href={profile?.cv_url || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
-                profile?.cv_url
-                  ? 'bg-primary text-white hover:bg-primary/90 shadow-lg shadow-primary/20'
-                  : 'bg-slate-600 text-slate-400 cursor-not-allowed'
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium ${
+                profile?.cv_url ? 'btn-gradient' : 'bg-card-surface text-muted cursor-not-allowed border border-purple-500/10'
               }`}
               {...(!profile?.cv_url && { 'aria-disabled': true, onClick: (e) => e.preventDefault() })}
             >
               <span className="material-symbols-outlined">download</span>
               Download Resume
             </a>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-medium hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
-            >
+            <Link to="/contact" className="btn-outline inline-flex items-center gap-2">
               <span className="material-symbols-outlined">mail</span>
               Contact Me
             </Link>
           </div>
 
-          <div className="glass rounded-2xl border border-primary/10 p-8 max-w-2xl">
+          <div className="card-surface p-8 max-w-2xl">
             <h2 className="text-xl font-bold text-white mb-6 text-center">Follow Me</h2>
             <div className="grid grid-cols-2 gap-4">
               {socialLinks.map(({ key, label, url, icon: Icon }) => (
@@ -148,21 +189,21 @@ export default function Home() {
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-primary/10 hover:bg-primary/10 hover:border-primary/20 transition-all"
+                    className="flex items-center gap-3 p-4 rounded-xl border border-purple-500/10 hover:border-purple-500/30 hover:bg-purple-500/5"
                   >
-                    <span className="flex-shrink-0 text-[24px]"><Icon /></span>
+                    <Icon />
                     <span className="font-medium text-white">{label}</span>
                   </a>
                 ) : null
               ))}
             </div>
             {!socialLinks.some(s => s.url) && (
-              <p className="text-slate-500 text-sm text-center py-4">Add social links in Admin → Profile to show them here.</p>
+              <p className="text-muted text-sm text-center py-4">Add social links in Admin → Profile to show them here.</p>
             )}
           </div>
         </section>
       </div>
-    </>
+    </div>
   )
 }
 

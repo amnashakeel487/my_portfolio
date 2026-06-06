@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getServices } from '../lib/supabase'
+import SectionHeader from '../components/SectionHeader'
 
 const iconMap = {
   palette: 'palette',
@@ -28,45 +29,37 @@ export default function Services() {
   const list = services.length > 0 ? services : defaultServices
 
   return (
-    <>
-      <header className="sticky top-0 z-10 glass px-6 md:px-8 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold">Services</h1>
-        <Link to="/contact" className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium hover:bg-primary/90">
-          Get in Touch
-        </Link>
-      </header>
+    <div className="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16">
+      <SectionHeader
+        tag="Services"
+        title="What I Offer"
+        subtitle="End-to-end design and development services to bring your product to life."
+      />
 
-      <div className="p-6 md:p-8 max-w-5xl mx-auto">
-        <div className="mb-12 text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-3">What I Offer</h2>
-          <p className="text-slate-500 dark:text-slate-400 text-lg">
-            End-to-end design and development services to bring your product to life.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {list.map((s, i) => (
-            <div
-              key={s.id || i}
-              className="glass p-8 rounded-2xl border border-primary/10 hover:border-primary/30 transition-all group"
-            >
-              <div className="size-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-3xl">{iconMap[s.icon] || s.icon || 'work'}</span>
-              </div>
-              <h3 className="text-xl font-bold text-slate-100 mb-2">{s.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{s.description}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {list.map((s, i) => (
+          <div
+            key={s.id || i}
+            className="card-surface card-lift p-8 text-center"
+          >
+            <div className="size-14 icon-gradient-box mx-auto mb-6">
+              <span className="material-symbols-outlined text-white text-2xl">
+                {iconMap[s.icon] || s.icon || 'work'}
+              </span>
             </div>
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-slate-500 dark:text-slate-400 mb-4">Have a project in mind?</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all">
-            Start a conversation
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </Link>
-        </div>
+            <h3 className="text-lg font-bold text-white mb-3">{s.title}</h3>
+            <p className="text-muted text-sm leading-relaxed">{s.description}</p>
+          </div>
+        ))}
       </div>
-    </>
+
+      <div className="mt-16 text-center">
+        <p className="text-muted mb-4">Have a project in mind?</p>
+        <Link to="/contact" className="btn-gradient inline-flex items-center gap-2">
+          Start a conversation
+          <span className="material-symbols-outlined">arrow_forward</span>
+        </Link>
+      </div>
+    </div>
   )
 }

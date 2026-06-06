@@ -1,74 +1,101 @@
-import { useState } from 'react'
-import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Outlet, NavLink, Link } from 'react-router-dom'
+import { getProfile } from '../lib/supabase'
+import Footer from './Footer'
 
 const navItems = [
-  { to: '/', icon: 'home', label: 'Home' },
-  { to: '/about', icon: 'person', label: 'About Me' },
-  { to: '/projects', icon: 'work', label: 'Projects' },
-  { to: '/services', icon: 'architecture', label: 'Services' },
-  { to: '/skills', icon: 'bolt', label: 'Skills' },
-  { to: '/contact', icon: 'mail', label: 'Contact' },
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About Me' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/services', label: 'Services' },
+  { to: '/skills', label: 'Skills' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Layout() {
-  const location = useLocation()
-  const isDashboard = location.pathname === '/dashboard'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [profile, setProfile] = useState(null)
+
+  useEffect(() => {
+    getProfile().then(setProfile)
+  }, [])
 
   return (
-    <div className="flex min-h-screen overflow-hidden bg-background-light dark:bg-background-dark">
-      {/* Sidebar - hidden on small screens */}
-      <aside className="w-64 border-r border-primary/10 bg-background-light dark:bg-background-dark hidden md:flex flex-col sticky top-0 h-screen flex-shrink-0">
-        <div className="p-6 flex items-center gap-3">
-          <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
-            <span className="material-symbols-outlined">grid_view</span>
-          </div>
-          <h2 className="text-xl font-bold tracking-tight">Portfolio</h2>
-        </div>
-        <nav className="flex-1 px-4 py-4 space-y-2">
-          {navItems.map(({ to, icon, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                  isActive ? 'text-primary sidebar-item-active' : 'text-slate-600 dark:text-slate-400 hover:bg-primary/10 hover:text-primary'
-                }`
-              }
-            >
-              <span className="material-symbols-outlined">{icon}</span>
-              <span className="font-medium">{label}</span>
-            </NavLink>
-          ))}
-        </nav>
-      </aside>
+    <div className="min-h-screen flex flex-col bg-bg-main">
+      {/* Top Navbar */}
+      <nav className="navbar sticky top-0 z-50 px-6 md:px-8 py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-6">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <div className="size-8 rounded-lg bg-gradient-accent flex items-center justify-center">
+              <span className="material-symbols-outlined text-white text-sm">grid_view</span>
+            </div>
+            <span className="font-bold text-white text-lg tracking-tight">Portfolio</span>
+          </Link>
 
-      {/* Mobile header + menu */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-20 glass px-4 py-3 flex items-center justify-between">
-        <h2 className="text-lg font-bold">Portfolio</h2>
-        <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-lg text-primary" aria-label="Toggle menu">
-          <span className="material-symbols-outlined">{mobileMenuOpen ? 'close' : 'menu'}</span>
-        </button>
-      </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-10 pt-16 bg-background-dark/95 backdrop-blur-md" onClick={() => setMobileMenuOpen(false)}>
-          <nav className="p-6 flex flex-col gap-2" onClick={e => e.stopPropagation()}>
-            {navItems.map(({ to, icon, label }) => (
-              <NavLink key={to} to={to} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-primary/10 hover:text-primary">
-                <span className="material-symbols-outlined">{icon}</span>
-                <span className="font-medium">{label}</span>
+          {/* Center nav links — desktop */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+              >
+                {label}
               </NavLink>
             ))}
-          </nav>
-        </div>
-      )}
+          </div>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-y-auto min-h-screen flex flex-col">
-        <div className={isDashboard ? '' : 'pt-16 md:pt-0'}>
-          <Outlet />
+          {/* Right CTA + mobile toggle */}
+          <div className="flex items-center gap-3">
+            <Link to="/contact" className="btn-gradient hidden sm:inline-flex">
+              Let's Talk
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-purple-text"
+              aria-label="Toggle menu"
+            >
+              <span className="material-symbols-outlined">{mobileMenuOpen ? 'close' : 'menu'}</span>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-2 flex flex-col gap-1 border-t border-purple-500/10 pt-4">
+            {navItems.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                onClick={() => setMobileMenuOpen(false)}
+                className={({ isActive }) =>
+                  `px-4 py-2.5 rounded-lg text-sm font-medium ${isActive ? 'text-white bg-purple-500/10' : 'text-purple-light hover:text-white'}`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-gradient text-center mt-2"
+            >
+              Let's Talk
+            </Link>
+          </div>
+        )}
+      </nav>
+
+      {/* Page content */}
+      <main className="flex-1">
+        <Outlet />
       </main>
+
+      <Footer profile={profile} />
     </div>
   )
 }
