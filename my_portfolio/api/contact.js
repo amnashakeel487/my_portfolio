@@ -9,10 +9,47 @@ function getSupabase() {
   return createClient(url, key)
 }
 
+async function parseJsonBody(req) {
+  if (req.body) {
+    if (typeof req.body === 'string') {
+      try {
+        return JSON.parse(req.body)
+      } catch {
+        return {}
+      }
+    }
+    if (typeof req.body === 'object') return req.body
+  }
+
+  if (typeof req.text === 'function') {
+    const raw = await req.text()
+    return raw ? JSON.parse(raw) : {}
+  }
+
+  return new Promise((resolve, reject) => {
+    let data = ''
+    req.on('data', (chunk) => {
+      data += chunk.toString()
+    })
+    req.on('end', () => {
+      try {
+        resolve(data ? JSON.parse(data) : {})
+      } catch (e) {
+        reject(e)
+      }
+    })
+    req.on('error', reject)
+  })
+}
+
 async function sendEmailNotification({ name, email, subject, message }) {
   const emailUser = process.env.EMAIL_USER
   const emailPass = process.env.EMAIL_PASS
-  if (!emailUser || !emailPass) return
+
+  if (!emailUser || !emailPass) {
+    console.error('Email notification skipped: EMAIL_USER or EMAIL_PASS not set on server')
+    return false
+  }
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -23,6 +60,8 @@ async function sendEmailNotification({ name, email, subject, message }) {
       pass: emailPass,
     },
   })
+
+  await transporter.verify()
 
   const htmlBody = `
     <div style="font-family: Inter, Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; background: #0f0c22; color: #e2e8f0; border-radius: 12px; border: 1px solid rgba(139,92,246,0.2);">
@@ -49,11 +88,13 @@ async function sendEmailNotification({ name, email, subject, message }) {
   `
 
   await transporter.sendMail({
-    from: emailUser,
+    from: `"Portfolio" <${emailUser}>`,
     to: emailUser,
     subject: `New Portfolio Message from ${name}`,
     html: htmlBody,
   })
+
+  return true
 }
 
 async function sendWhatsAppNotification({ name, email, message }) {
@@ -85,7 +126,14 @@ export default async function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'Method not allowed' })
   }
 
-  const { name, email, subject, message } = req.body ?? {}
+  let body
+  try {
+    body = await parseJsonBody(req)
+  } catch {
+    return res.status(400).json({ ok: false, error: 'Invalid JSON body' })
+  }
+
+  const { name, email, subject, message } = body
 
   if (!name || !email || !message) {
     return res.status(400).json({ ok: false, error: 'Name, email, and message are required.' })
