@@ -55,21 +55,21 @@ function HeroSection({ profile }) {
   const description = `Hi, I'm ${name.split(' ')[0] || 'Amna Shakeel'}, a Software Engineering student at COMSATS University. I build backend and full-stack projects with Flask, React and Supabase, and use Pandas and Scikit-learn for data analysis and machine learning.`
 
   return (
-    <section id="home" className="min-h-screen relative flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section id="home" className="min-h-screen relative flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10">
           <div className="grid grid-cols-12 gap-2">
             {Array.from({ length: 144 }).map((_, i) => (
-              <div key={i} className="w-1 h-1 bg-purple-400 rounded-full opacity-20"></div>
+              <div key={i} className="w-1 h-1 bg-blue-400 rounded-full opacity-20"></div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 py-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Content */}
           <div className="lg:col-span-7">
@@ -84,13 +84,13 @@ function HeroSection({ profile }) {
             <div className="flex flex-wrap gap-4 mb-12">
               <button 
                 onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg"
               >
                 View my work
               </button>
               <button 
                 onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-purple-400 text-purple-400 px-8 py-4 rounded-full font-semibold hover:bg-purple-400 hover:text-white transition-all duration-300"
+                className="border-2 border-blue-400 text-blue-400 px-8 py-4 rounded-full font-semibold hover:bg-blue-400 hover:text-white transition-all duration-300"
               >
                 Get in touch
               </button>
@@ -107,7 +107,7 @@ function HeroSection({ profile }) {
             {/* Tech Stack */}
             <div className="flex flex-wrap gap-3">
               {['Python', 'Flask', 'React', 'Supabase', 'Docker', 'Scikit-learn'].map(tech => (
-                <span key={tech} className="px-4 py-2 bg-gray-800/50 border border-gray-700 rounded-full text-sm text-gray-300">
+                <span key={tech} className="px-4 py-2 bg-gray-800/50 border border-blue-700 rounded-full text-sm text-gray-300">
                   {tech}
                 </span>
               ))}
@@ -118,8 +118,8 @@ function HeroSection({ profile }) {
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative">
               {/* Profile Image with Gradient Border */}
-              <div className="relative">
-                <div className="w-80 h-80 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 p-1">
+              <div className="relative z-10">
+                <div className="w-80 h-80 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 p-1">
                   <div className="w-full h-full rounded-full overflow-hidden bg-gray-800 flex items-center justify-center">
                     {profile?.avatar_url ? (
                       <img 
@@ -132,25 +132,25 @@ function HeroSection({ profile }) {
                     )}
                   </div>
                 </div>
+              </div>
                 
-                {/* Floating Info Cards */}
-                <div className="absolute -right-8 top-16 bg-gray-800/90 backdrop-blur border border-gray-700 rounded-xl p-4 min-w-48">
-                  <div className="text-xs text-gray-400 mb-1">Shipped at WeConnectInnovation</div>
-                  <div className="text-white font-medium">Hotel Booking System</div>
-                  <div className="text-xs text-gray-400">Vercel + Railway</div>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="text-xs text-green-400">Live</span>
-                  </div>
+              {/* Floating Info Cards - Repositioned */}
+              <div className="absolute -right-12 top-8 bg-gray-800/90 backdrop-blur border border-gray-700 rounded-xl p-4 min-w-52 z-20">
+                <div className="text-xs text-gray-400 mb-1">Shipped at WeConnectInnovation</div>
+                <div className="text-white font-medium text-sm">Hotel Booking System</div>
+                <div className="text-xs text-gray-400">Vercel + Railway</div>
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span className="text-xs text-green-400">Live</span>
                 </div>
+              </div>
 
-                <div className="absolute -left-8 bottom-20 bg-gray-800/90 backdrop-blur border border-gray-700 rounded-xl p-4 min-w-40">
-                  <div className="text-xs text-gray-400 mb-1">Project hosting</div>
-                  <div className="text-white font-medium">Prompt Vault</div>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="text-xs text-green-400">Live</span>
-                  </div>
+              <div className="absolute -left-12 bottom-8 bg-gray-800/90 backdrop-blur border border-gray-700 rounded-xl p-4 min-w-44 z-20">
+                <div className="text-xs text-gray-400 mb-1">Project hosting</div>
+                <div className="text-white font-medium text-sm">Prompt Vault</div>
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <span className="text-xs text-green-400">Live</span>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@ function AboutSection({ profile, education, expertise, honors }) {
     <section id="about" className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">About me</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">About me</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Who I Am</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Get to know more about my background, skills, and what drives my passion for technology.
@@ -190,7 +190,7 @@ function AboutSection({ profile, education, expertise, honors }) {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-white">{name}</h3>
-                  <p className="text-purple-400 font-medium">{profile?.tagline || 'Software Developer'}</p>
+                  <p className="text-blue-400 font-medium">{profile?.tagline || 'Software Developer'}</p>
                   <div className="flex items-center gap-4 mt-2 text-sm text-gray-400">
                     <span className="flex items-center gap-1">
                       <span className="material-symbols-outlined text-sm">location_on</span>
@@ -229,7 +229,7 @@ function AboutSection({ profile, education, expertise, honors }) {
           <div className="lg:col-span-4">
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-2xl p-8 h-full">
               <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                <span className="material-symbols-outlined text-purple-400">school</span>
+                <span className="material-symbols-outlined text-blue-400">school</span>
                 Education
               </h4>
               
@@ -238,9 +238,9 @@ function AboutSection({ profile, education, expertise, honors }) {
                   education.map((item, index) => (
                     <div key={item.id} className="relative">
                       <div className="flex items-start gap-4">
-                        <div className={`w-3 h-3 rounded-full mt-1 ${index === 0 ? 'bg-purple-500' : 'bg-gray-600'}`}></div>
+                        <div className={`w-3 h-3 rounded-full mt-1 ${index === 0 ? 'bg-blue-500' : 'bg-gray-600'}`}></div>
                         <div>
-                          <p className="text-purple-400 text-sm font-medium">{item.period}</p>
+                          <p className="text-blue-400 text-sm font-medium">{item.period}</p>
                           <h5 className="text-white font-medium">{item.title}</h5>
                           <p className="text-gray-400 text-sm">{item.institution}</p>
                           {item.description && (
@@ -262,13 +262,13 @@ function AboutSection({ profile, education, expertise, honors }) {
               {honors.length > 0 && (
                 <div className="mt-8 pt-8 border-t border-gray-700">
                   <h5 className="text-white font-medium mb-4 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-purple-400 text-lg">workspace_premium</span>
+                    <span className="material-symbols-outlined text-blue-400 text-lg">workspace_premium</span>
                     Honors & Awards
                   </h5>
                   <div className="space-y-2">
                     {honors.map((honor) => (
                       <div key={honor.id} className="flex items-center gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
                         <span className="text-gray-300">{honor.title}</span>
                       </div>
                     ))}
@@ -305,7 +305,7 @@ function ExperienceSection() {
     <section id="experience" className="py-20 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">My Journey</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A timeline of my educational and professional experiences in software development.
@@ -322,7 +322,7 @@ function ExperienceSection() {
                 <div key={index} className="relative flex items-start gap-8">
                   {/* Timeline dot */}
                   <div className={`relative z-10 w-16 h-16 rounded-full flex items-center justify-center ${
-                    index === 0 ? 'bg-gradient-to-r from-purple-600 to-blue-600' : 'bg-gray-600'
+                    index === 0 ? 'bg-gradient-to-r from-blue-600 to-indigo-600' : 'bg-gray-600'
                   }`}>
                     <span className="material-symbols-outlined text-white">
                       {exp.type === 'Work' ? 'work' : 'school'}
@@ -334,7 +334,7 @@ function ExperienceSection() {
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-semibold text-white">{exp.title}</h3>
-                        <p className="text-purple-400 font-medium">{exp.company}</p>
+                        <p className="text-blue-400 font-medium">{exp.company}</p>
                       </div>
                       <span className="text-sm text-gray-400 bg-gray-800 px-3 py-1 rounded-full">{exp.period}</span>
                     </div>
@@ -356,7 +356,7 @@ function ProjectsSection({ projects }) {
     <section id="projects" className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Projects</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Projects</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Featured Work</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             A showcase of my recent projects and technical implementations.
@@ -366,7 +366,7 @@ function ProjectsSection({ projects }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.length > 0 ? (
             projects.slice(0, 6).map((project) => (
-              <div key={project.id} className="group bg-gray-800/50 backdrop-blur border border-gray-700 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+              <div key={project.id} className="group bg-gray-800/50 backdrop-blur border border-gray-700 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
                 {project.image_url && (
                   <div className="aspect-video overflow-hidden">
                     <img 
@@ -378,7 +378,7 @@ function ProjectsSection({ projects }) {
                 )}
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2 py-1 bg-purple-600/20 text-purple-300 text-xs rounded-full">
+                    <span className="px-2 py-1 bg-blue-600/20 text-blue-300 text-xs rounded-full">
                       {project.category || 'Web App'}
                     </span>
                     {project.live_url && (
@@ -407,7 +407,7 @@ function ProjectsSection({ projects }) {
                         href={project.live_url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-purple-400 hover:text-white transition-colors"
+                        className="text-blue-400 hover:text-white transition-colors"
                       >
                         <span className="material-symbols-outlined">open_in_new</span>
                       </a>
@@ -417,7 +417,7 @@ function ProjectsSection({ projects }) {
                         href={project.github_url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-purple-400 hover:text-white transition-colors"
+                        className="text-blue-400 hover:text-white transition-colors"
                       >
                         <span className="material-symbols-outlined">code</span>
                       </a>
@@ -443,7 +443,7 @@ function ServicesSection({ services }) {
     <section id="services" className="py-20 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Services</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Services</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">What I Offer</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Professional services and solutions I provide to help bring your ideas to life.
@@ -453,8 +453,8 @@ function ServicesSection({ services }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.length > 0 ? (
             services.map((service, index) => (
-              <div key={service.id} className="bg-gray-700/30 border border-gray-600 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+              <div key={service.id} className="bg-gray-700/30 border border-gray-600 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
                   <span className="material-symbols-outlined text-white">
                     {service.icon || 'code'}
                   </span>
@@ -465,7 +465,7 @@ function ServicesSection({ services }) {
                   <ul className="space-y-2">
                     {service.features.split(',').slice(0, 3).map((feature, i) => (
                       <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
                         {feature.trim()}
                       </li>
                     ))}
@@ -492,8 +492,8 @@ function ServicesSection({ services }) {
                 icon: "analytics"
               }
             ].map((service, index) => (
-              <div key={index} className="bg-gray-700/30 border border-gray-600 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+              <div key={index} className="bg-gray-700/30 border border-gray-600 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
                   <span className="material-symbols-outlined text-white">
                     {service.icon}
                   </span>
@@ -522,7 +522,7 @@ function SkillsSection({ skills }) {
     <section id="skills" className="py-20 bg-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Skills</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Skills</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Technical Expertise</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Technologies and tools I work with to build amazing digital experiences.
@@ -536,20 +536,20 @@ function SkillsSection({ skills }) {
                 <h3 className="text-2xl font-semibold text-white mb-8 text-center">{category}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                   {categorySkills.map((skill) => (
-                    <div key={skill.id} className="group bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center hover:border-purple-500/50 hover:bg-gray-700/50 transition-all duration-300">
+                    <div key={skill.id} className="group bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center hover:border-blue-500/50 hover:bg-gray-700/50 transition-all duration-300">
                       {skill.icon_url ? (
                         <img src={skill.icon_url} alt={skill.name} className="w-12 h-12 mx-auto mb-4" />
                       ) : (
-                        <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-4">
                           <span className="material-symbols-outlined text-white">code</span>
                         </div>
                       )}
-                      <h4 className="font-medium text-white group-hover:text-purple-300 transition-colors">{skill.name}</h4>
+                      <h4 className="font-medium text-white group-hover:text-blue-300 transition-colors">{skill.name}</h4>
                       {skill.proficiency && (
                         <div className="mt-3">
                           <div className="bg-gray-600 h-2 rounded-full overflow-hidden">
                             <div 
-                              className="bg-gradient-to-r from-purple-600 to-blue-600 h-full rounded-full transition-all duration-500"
+                              className="bg-gradient-to-r from-blue-600 to-indigo-600 h-full rounded-full transition-all duration-500"
                               style={{ width: `${skill.proficiency}%` }}
                             ></div>
                           </div>
@@ -609,7 +609,7 @@ function ContactSection({ profile }) {
     <section id="contact" className="py-20 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-purple-400 font-semibold text-sm uppercase tracking-wider">Contact</span>
+          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Contact</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">Let's Talk</h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Have a project in mind or want to discuss opportunities? I'd love to hear from you.
@@ -628,7 +628,7 @@ function ContactSection({ profile }) {
                     type="text"
                     name="name"
                     required
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     placeholder="Your name"
                   />
                 </div>
@@ -638,7 +638,7 @@ function ContactSection({ profile }) {
                     type="email"
                     name="email"
                     required
-                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -649,7 +649,7 @@ function ContactSection({ profile }) {
                   type="text"
                   name="subject"
                   required
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   placeholder="Project inquiry"
                 />
               </div>
@@ -659,13 +659,13 @@ function ContactSection({ profile }) {
                   name="message"
                   required
                   rows={6}
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none resize-none"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
                   placeholder="Tell me about your project..."
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-3 rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
               >
                 Send Message
               </button>
@@ -679,12 +679,12 @@ function ContactSection({ profile }) {
               <div className="space-y-4">
                 {profile?.email && (
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                       <span className="material-symbols-outlined text-white text-lg">mail</span>
                     </div>
                     <div>
                       <p className="text-white font-medium">Email</p>
-                      <a href={`mailto:${profile.email}`} className="text-purple-400 hover:text-purple-300">
+                      <a href={`mailto:${profile.email}`} className="text-blue-400 hover:text-blue-300">
                         {profile.email}
                       </a>
                     </div>
@@ -693,12 +693,12 @@ function ContactSection({ profile }) {
                 
                 {profile?.phone && (
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                       <span className="material-symbols-outlined text-white text-lg">call</span>
                     </div>
                     <div>
                       <p className="text-white font-medium">Phone</p>
-                      <a href={`tel:${profile.phone}`} className="text-purple-400 hover:text-purple-300">
+                      <a href={`tel:${profile.phone}`} className="text-blue-400 hover:text-blue-300">
                         {profile.phone}
                       </a>
                     </div>
@@ -707,12 +707,12 @@ function ContactSection({ profile }) {
                 
                 {profile?.location && (
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                       <span className="material-symbols-outlined text-white text-lg">location_on</span>
                     </div>
                     <div>
                       <p className="text-white font-medium">Location</p>
-                      <p className="text-purple-400">{profile.location}</p>
+                      <p className="text-blue-400">{profile.location}</p>
                     </div>
                   </div>
                 )}
@@ -730,9 +730,9 @@ function ContactSection({ profile }) {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:border-purple-500/50 hover:bg-gray-700/50 transition-all duration-300"
+                      className="flex items-center gap-3 p-4 bg-gray-800/50 border border-gray-600 rounded-lg hover:border-blue-500/50 hover:bg-gray-700/50 transition-all duration-300"
                     >
-                      <span className="material-symbols-outlined text-purple-400">{link.icon}</span>
+                      <span className="material-symbols-outlined text-blue-400">{link.icon}</span>
                       <span className="text-white font-medium">{link.name}</span>
                     </a>
                   ))}
