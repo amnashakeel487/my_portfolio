@@ -1,9 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import Layout from './components/Layout'
+import SinglePageLayout from './components/SinglePageLayout'
 import AdminLayout from './components/AdminLayout'
 import AdminGuard from './components/AdminGuard'
 import Home from './pages/Home'
+import SinglePageHome from './pages/SinglePageHome'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Services from './pages/Services'
@@ -25,7 +27,15 @@ export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        {/* Single Page Portfolio Route */}
+        <Route path="/" element={
+          <SinglePageLayout>
+            <SinglePageHome />
+          </SinglePageLayout>
+        } />
+        
+        {/* Multi-page Routes (keeping for admin access) */}
+        <Route path="/pages" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="projects" element={<Projects />} />
@@ -34,6 +44,8 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="dashboard" element={<Dashboard />} />
         </Route>
+
+        {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
           <Route index element={<AdminOverview />} />
