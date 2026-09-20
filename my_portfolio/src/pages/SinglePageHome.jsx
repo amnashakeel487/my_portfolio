@@ -520,27 +520,69 @@ function SkillsSection({ skills }) {
 
   // Default skills if none exist
   const defaultSkills = {
-    'Frontend': [
-      { id: 1, name: 'React', proficiency: 90, icon_url: null },
-      { id: 2, name: 'JavaScript', proficiency: 85, icon_url: null },
-      { id: 3, name: 'HTML/CSS', proficiency: 95, icon_url: null },
-      { id: 4, name: 'Tailwind CSS', proficiency: 88, icon_url: null }
+    'Backend & Web Development': [
+      { id: 1, name: 'Python', proficiency: 95, icon_url: null },
+      { id: 2, name: 'Flask', proficiency: 90, icon_url: null },
+      { id: 3, name: 'REST API Design', proficiency: 88, icon_url: null },
+      { id: 4, name: 'JWT Authentication', proficiency: 85, icon_url: null },
+      { id: 5, name: 'SQLAlchemy', proficiency: 87, icon_url: null },
+      { id: 6, name: 'PostgreSQL', proficiency: 85, icon_url: null },
+      { id: 7, name: 'Supabase', proficiency: 90, icon_url: null },
+      { id: 8, name: 'Flask-Login', proficiency: 88, icon_url: null },
+      { id: 9, name: 'Flask-RESTful', proficiency: 85, icon_url: null },
+      { id: 10, name: 'Flask-SocketIO', proficiency: 80, icon_url: null },
+      { id: 11, name: 'SQLite', proficiency: 90, icon_url: null },
+      { id: 12, name: 'Jinja2', proficiency: 85, icon_url: null }
     ],
-    'Backend': [
-      { id: 5, name: 'Python', proficiency: 92, icon_url: null },
-      { id: 6, name: 'Flask', proficiency: 80, icon_url: null },
-      { id: 7, name: 'Node.js', proficiency: 75, icon_url: null },
-      { id: 8, name: 'Supabase', proficiency: 85, icon_url: null }
+    'Frontend & Full-Stack': [
+      { id: 13, name: 'React', proficiency: 92, icon_url: null },
+      { id: 14, name: 'Vite', proficiency: 88, icon_url: null },
+      { id: 15, name: 'Tailwind CSS', proficiency: 95, icon_url: null },
+      { id: 16, name: 'React Router', proficiency: 90, icon_url: null },
+      { id: 17, name: 'React Hook Form', proficiency: 85, icon_url: null },
+      { id: 18, name: 'Framer Motion', proficiency: 80, icon_url: null },
+      { id: 19, name: 'HTML/CSS', proficiency: 95, icon_url: null },
+      { id: 20, name: 'Bootstrap', proficiency: 88, icon_url: null },
+      { id: 21, name: 'Admin Dashboards', proficiency: 90, icon_url: null },
+      { id: 22, name: 'SaaS UI Design', proficiency: 85, icon_url: null }
     ],
-    'Data Science': [
-      { id: 9, name: 'Pandas', proficiency: 88, icon_url: null },
-      { id: 10, name: 'Scikit-learn', proficiency: 82, icon_url: null },
-      { id: 11, name: 'NumPy', proficiency: 85, icon_url: null }
+    'Data Science & ML': [
+      { id: 23, name: 'Pandas', proficiency: 90, icon_url: null },
+      { id: 24, name: 'NumPy', proficiency: 88, icon_url: null },
+      { id: 25, name: 'Matplotlib', proficiency: 85, icon_url: null },
+      { id: 26, name: 'Seaborn', proficiency: 82, icon_url: null },
+      { id: 27, name: 'Plotly', proficiency: 80, icon_url: null },
+      { id: 28, name: 'Scikit-learn', proficiency: 85, icon_url: null },
+      { id: 29, name: 'Linear Regression', proficiency: 88, icon_url: null },
+      { id: 30, name: 'Model Evaluation', proficiency: 85, icon_url: null }
     ],
-    'Tools': [
-      { id: 12, name: 'Docker', proficiency: 75, icon_url: null },
-      { id: 13, name: 'Git', proficiency: 90, icon_url: null },
-      { id: 14, name: 'VS Code', proficiency: 95, icon_url: null }
+    'DevOps & Deployment': [
+      { id: 31, name: 'Docker', proficiency: 85, icon_url: null },
+      { id: 32, name: 'Docker Compose', proficiency: 80, icon_url: null },
+      { id: 33, name: 'GitHub Actions', proficiency: 82, icon_url: null },
+      { id: 34, name: 'Vercel', proficiency: 90, icon_url: null },
+      { id: 35, name: 'Railway', proficiency: 88, icon_url: null },
+      { id: 36, name: 'cPanel', proficiency: 85, icon_url: null },
+      { id: 37, name: 'Git/GitHub', proficiency: 92, icon_url: null },
+      { id: 38, name: 'CI/CD Pipelines', proficiency: 80, icon_url: null }
+    ],
+    'Other Technical Skills': [
+      { id: 39, name: 'WebSockets', proficiency: 80, icon_url: null },
+      { id: 40, name: 'Stripe Integration', proficiency: 85, icon_url: null },
+      { id: 41, name: 'Webhooks', proficiency: 82, icon_url: null },
+      { id: 42, name: 'Encryption (Fernet)', proficiency: 78, icon_url: null },
+      { id: 43, name: 'SMTP Automation', proficiency: 85, icon_url: null },
+      { id: 44, name: 'Postman API Testing', proficiency: 88, icon_url: null },
+      { id: 45, name: 'WTForms', proficiency: 85, icon_url: null },
+      { id: 46, name: 'Role-based Access Control', proficiency: 85, icon_url: null }
+    ],
+    'Professional Skills': [
+      { id: 47, name: 'Project Management', proficiency: 92, icon_url: null },
+      { id: 48, name: 'Time Management', proficiency: 95, icon_url: null },
+      { id: 49, name: 'Problem Solving', proficiency: 93, icon_url: null },
+      { id: 50, name: 'End-to-end Ownership', proficiency: 90, icon_url: null },
+      { id: 51, name: 'Team Communication', proficiency: 88, icon_url: null },
+      { id: 52, name: 'Feedback Integration', proficiency: 90, icon_url: null }
     ]
   }
 
@@ -561,9 +603,29 @@ function SkillsSection({ skills }) {
             <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Skills</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">Technical Expertise</h2>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto">
-            Technologies and tools I work with to build amazing digital experiences.
+          <p className="text-gray-400 text-base max-w-2xl mx-auto mb-8">
+            A comprehensive toolkit spanning full-stack development, data science, and professional project management.
           </p>
+
+          {/* Skills Statistics */}
+          <div className="flex flex-wrap justify-center gap-6 mb-8">
+            <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl px-4 py-3 backdrop-blur">
+              <div className="text-2xl font-bold text-blue-400">50+</div>
+              <div className="text-xs text-gray-400 uppercase tracking-wider">Total Skills</div>
+            </div>
+            <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl px-4 py-3 backdrop-blur">
+              <div className="text-2xl font-bold text-indigo-400">6</div>
+              <div className="text-xs text-gray-400 uppercase tracking-wider">Skill Categories</div>
+            </div>
+            <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl px-4 py-3 backdrop-blur">
+              <div className="text-2xl font-bold text-emerald-400">12</div>
+              <div className="text-xs text-gray-400 uppercase tracking-wider">Projects Completed</div>
+            </div>
+            <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl px-4 py-3 backdrop-blur">
+              <div className="text-2xl font-bold text-purple-400">8</div>
+              <div className="text-xs text-gray-400 uppercase tracking-wider">Weeks Experience</div>
+            </div>
+          </div>
         </div>
 
         {/* Skills Grid */}
@@ -573,14 +635,28 @@ function SkillsSection({ skills }) {
               {/* Category Header */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
-                <div className="bg-gray-800/50 backdrop-blur border border-blue-500/20 rounded-full px-6 py-2">
+                <div className="bg-gray-800/50 backdrop-blur border border-blue-500/20 rounded-full px-6 py-3 flex items-center gap-3">
+                  {/* Category Icon */}
+                  <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-white text-sm">
+                      {category === 'Backend & Web Development' ? 'dns' :
+                       category === 'Frontend & Full-Stack' ? 'web' :
+                       category === 'Data Science & ML' ? 'analytics' :
+                       category === 'DevOps & Deployment' ? 'cloud_upload' :
+                       category === 'Other Technical Skills' ? 'settings' :
+                       category === 'Professional Skills' ? 'psychology' : 'code'}
+                    </span>
+                  </div>
                   <h3 className="text-xl font-semibold text-white">{category}</h3>
+                  <div className="px-2 py-1 bg-blue-500/20 rounded-full">
+                    <span className="text-blue-300 text-xs font-medium">{categorySkills.length}</span>
+                  </div>
                 </div>
                 <div className="flex-1 h-px bg-gradient-to-r from-blue-500/30 via-transparent to-transparent"></div>
               </div>
 
               {/* Skills Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
                 {categorySkills.map((skill, index) => (
                   <div
                     key={skill.id}
@@ -595,7 +671,29 @@ function SkillsSection({ skills }) {
                         </div>
                       ) : (
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                          <span className="material-symbols-outlined text-white text-2xl">code</span>
+                          <span className="material-symbols-outlined text-white text-2xl">
+                            {/* Technology-specific icons */}
+                            {skill.name === 'Python' ? 'smart_toy' :
+                             skill.name === 'React' ? 'web' :
+                             skill.name === 'Flask' ? 'dns' :
+                             skill.name === 'Docker' ? 'developer_board' :
+                             skill.name === 'PostgreSQL' || skill.name === 'SQLite' || skill.name === 'Supabase' ? 'storage' :
+                             skill.name === 'Git/GitHub' || skill.name === 'GitHub Actions' ? 'account_tree' :
+                             skill.name.includes('CSS') || skill.name.includes('HTML') ? 'palette' :
+                             skill.name.includes('Pandas') || skill.name.includes('NumPy') ? 'functions' :
+                             skill.name.includes('API') || skill.name.includes('REST') ? 'api' :
+                             skill.name.includes('Auth') || skill.name.includes('JWT') ? 'security' :
+                             skill.name.includes('Deploy') || skill.name.includes('Vercel') || skill.name.includes('Railway') ? 'cloud_upload' :
+                             skill.name.includes('Management') || skill.name.includes('Communication') ? 'groups' :
+                             skill.name.includes('Testing') || skill.name.includes('Postman') ? 'bug_report' :
+                             skill.name.includes('Stripe') || skill.name.includes('Payment') ? 'payment' :
+                             skill.name.includes('Socket') || skill.name.includes('WebSocket') ? 'cable' :
+                             skill.name.includes('Email') || skill.name.includes('SMTP') ? 'email' :
+                             skill.name.includes('Encrypt') ? 'lock' :
+                             skill.name.includes('Chart') || skill.name.includes('Plot') || skill.name.includes('Visual') ? 'bar_chart' :
+                             skill.name.includes('Machine') || skill.name.includes('ML') || skill.name.includes('Regression') ? 'psychology' :
+                             'code'}
+                          </span>
                         </div>
                       )}
                       {/* Floating badge */}
