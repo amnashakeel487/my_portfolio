@@ -518,56 +518,155 @@ function SkillsSection({ skills }) {
     return acc
   }, {})
 
+  // Default skills if none exist
+  const defaultSkills = {
+    'Frontend': [
+      { id: 1, name: 'React', proficiency: 90, icon_url: null },
+      { id: 2, name: 'JavaScript', proficiency: 85, icon_url: null },
+      { id: 3, name: 'HTML/CSS', proficiency: 95, icon_url: null },
+      { id: 4, name: 'Tailwind CSS', proficiency: 88, icon_url: null }
+    ],
+    'Backend': [
+      { id: 5, name: 'Python', proficiency: 92, icon_url: null },
+      { id: 6, name: 'Flask', proficiency: 80, icon_url: null },
+      { id: 7, name: 'Node.js', proficiency: 75, icon_url: null },
+      { id: 8, name: 'Supabase', proficiency: 85, icon_url: null }
+    ],
+    'Data Science': [
+      { id: 9, name: 'Pandas', proficiency: 88, icon_url: null },
+      { id: 10, name: 'Scikit-learn', proficiency: 82, icon_url: null },
+      { id: 11, name: 'NumPy', proficiency: 85, icon_url: null }
+    ],
+    'Tools': [
+      { id: 12, name: 'Docker', proficiency: 75, icon_url: null },
+      { id: 13, name: 'Git', proficiency: 90, icon_url: null },
+      { id: 14, name: 'VS Code', proficiency: 95, icon_url: null }
+    ]
+  }
+
+  const displaySkills = Object.keys(skillCategories).length > 0 ? skillCategories : defaultSkills
+
   return (
-    <section id="skills" className="py-12 bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+    <section id="skills" className="py-12 bg-gray-900 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
-          <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Skills</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4">
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+            <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Skills</span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">Technical Expertise</h2>
           <p className="text-gray-400 text-base max-w-2xl mx-auto">
             Technologies and tools I work with to build amazing digital experiences.
           </p>
         </div>
 
-        {Object.keys(skillCategories).length > 0 ? (
-          <div className="space-y-12">
-            {Object.entries(skillCategories).map(([category, categorySkills]) => (
-              <div key={category}>
-                <h3 className="text-2xl font-semibold text-white mb-8 text-center">{category}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                  {categorySkills.map((skill) => (
-                    <div key={skill.id} className="group bg-gray-800/50 border border-gray-700 rounded-xl p-6 text-center hover:border-blue-500/50 hover:bg-gray-700/50 transition-all duration-300">
-                      {skill.icon_url ? (
-                        <img src={skill.icon_url} alt={skill.name} className="w-12 h-12 mx-auto mb-4" />
-                      ) : (
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                          <span className="material-symbols-outlined text-white">code</span>
-                        </div>
-                      )}
-                      <h4 className="font-medium text-white group-hover:text-blue-300 transition-colors">{skill.name}</h4>
-                      {skill.proficiency && (
-                        <div className="mt-3">
-                          <div className="bg-gray-600 h-2 rounded-full overflow-hidden">
-                            <div 
-                              className="bg-gradient-to-r from-blue-600 to-indigo-600 h-full rounded-full transition-all duration-500"
-                              style={{ width: `${skill.proficiency}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-xs text-gray-400 mt-1 block">{skill.proficiency}%</span>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+        {/* Skills Grid */}
+        <div className="space-y-10">
+          {Object.entries(displaySkills).map(([category, categorySkills]) => (
+            <div key={category} className="skill-category">
+              {/* Category Header */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
+                <div className="bg-gray-800/50 backdrop-blur border border-blue-500/20 rounded-full px-6 py-2">
+                  <h3 className="text-xl font-semibold text-white">{category}</h3>
                 </div>
+                <div className="flex-1 h-px bg-gradient-to-r from-blue-500/30 via-transparent to-transparent"></div>
               </div>
-            ))}
+
+              {/* Skills Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {categorySkills.map((skill, index) => (
+                  <div
+                    key={skill.id}
+                    className="group skill-card bg-gray-800/30 backdrop-blur border border-gray-700/50 rounded-2xl p-6 hover:border-blue-500/50 hover:bg-gray-700/30 transition-all duration-300 hover:transform hover:-translate-y-2"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Skill Icon */}
+                    <div className="relative mb-4">
+                      {skill.icon_url ? (
+                        <div className="w-14 h-14 rounded-xl overflow-hidden mx-auto bg-gray-700/50 flex items-center justify-center">
+                          <img src={skill.icon_url} alt={skill.name} className="w-10 h-10" />
+                        </div>
+                      ) : (
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                          <span className="material-symbols-outlined text-white text-2xl">code</span>
+                        </div>
+                      )}
+                      {/* Floating badge */}
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="material-symbols-outlined text-white text-xs">star</span>
+                      </div>
+                    </div>
+
+                    {/* Skill Name */}
+                    <h4 className="font-semibold text-white text-center mb-4 group-hover:text-blue-300 transition-colors">
+                      {skill.name}
+                    </h4>
+
+                    {/* Progress Bar */}
+                    {skill.proficiency && (
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-gray-400">Proficiency</span>
+                          <span className="text-blue-400 font-medium">{skill.proficiency}%</span>
+                        </div>
+                        <div className="relative">
+                          <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-1000 ease-out skill-progress"
+                              style={{ 
+                                width: `${skill.proficiency}%`,
+                                '--progress-width': `${skill.proficiency}%`
+                              }}
+                            >
+                              <div className="h-full bg-white/20 animate-pulse"></div>
+                            </div>
+                          </div>
+                          {/* Glow effect */}
+                          <div 
+                            className="absolute top-0 h-2 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-50 blur-sm transition-all duration-1000 ease-out"
+                            style={{ width: `${skill.proficiency}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Skill Level Badge */}
+                    <div className="mt-4 text-center">
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
+                        (skill.proficiency || 80) >= 90 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' :
+                        (skill.proficiency || 80) >= 75 ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
+                        'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
+                      }`}>
+                        {(skill.proficiency || 80) >= 90 ? 'Expert' : (skill.proficiency || 80) >= 75 ? 'Advanced' : 'Intermediate'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-12">
+          <div className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 border border-blue-500/20 rounded-2xl p-8">
+            <h3 className="text-xl font-semibold text-white mb-4">Ready to work together?</h3>
+            <p className="text-gray-400 mb-6">Let's build something amazing with these technologies.</p>
+            <button
+              onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
+            >
+              Start a project
+            </button>
           </div>
-        ) : (
-          <div className="text-center py-16">
-            <span className="material-symbols-outlined text-6xl text-gray-600 mb-4 block">psychology</span>
-            <p className="text-gray-500">No skills to display. Add some in the admin panel.</p>
-          </div>
-        )}
+        </div>
       </div>
     </section>
   )
