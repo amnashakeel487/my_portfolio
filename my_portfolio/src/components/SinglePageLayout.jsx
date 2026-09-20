@@ -54,17 +54,17 @@ export default function SinglePageLayout({ children }) {
     <div className="min-h-screen flex flex-col bg-gray-900">
       {/* Fixed Navbar */}
       <nav className="fixed top-0 w-full z-50 bg-gray-900/95 backdrop-blur border-b border-gray-700">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 py-4">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button 
               onClick={() => scrollToSection('home')}
-              className="flex items-center gap-3 group"
+              className="flex items-center gap-2 group"
             >
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AS</span>
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs">AS</span>
               </div>
-              <span className="font-bold text-white text-lg">Amna Shakeel</span>
+              <span className="font-bold text-white text-base">Amna Shakeel</span>
             </button>
 
             {/* Desktop Navigation */}
@@ -88,7 +88,7 @@ export default function SinglePageLayout({ children }) {
             <div className="hidden sm:flex items-center gap-4">
               <button
                 onClick={() => scrollToSection('contact')}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full font-medium hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
               >
                 Let's talk
               </button>
@@ -124,7 +124,7 @@ export default function SinglePageLayout({ children }) {
                 ))}
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-full font-medium text-center"
+                  className="mt-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full font-medium text-center"
                 >
                   Let's talk
                 </button>
@@ -135,7 +135,7 @@ export default function SinglePageLayout({ children }) {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-20">
+      <main className="pt-16">
         {children}
       </main>
 
