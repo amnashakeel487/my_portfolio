@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { getProjects, createProject, updateProject, deleteProject, uploadImage } from '../../lib/supabase'
 
-const CATEGORIES = ['React', 'Node.js', 'Web3', 'UI/UX', 'Other']
+const CATEGORIES = ['React', 'Flask', 'Node.js', 'Web3', 'UI/UX', 'Full-Stack', 'Python', 'Data Science', 'Machine Learning', 'Automation', 'Other']
 const STATUSES = ['Live', 'In Progress', 'Archived']
 
 export default function AdminProjects() {
@@ -41,7 +41,7 @@ export default function AdminProjects() {
 
   const openNew = () => {
     setEditing(null)
-    setForm({ title: '', description: '', image_url: '', tags: [], live_url: '', github_url: '', status: 'Live', category: 'React' })
+    setForm({ title: '', description: '', image_url: '', tags: [], live_url: '', github_url: '', status: 'Live', category: 'Flask' })
   }
 
   const openEdit = (p) => {
@@ -54,7 +54,7 @@ export default function AdminProjects() {
       live_url: p.live_url || '',
       github_url: p.github_url || '',
       status: p.status || 'Live',
-      category: p.category || 'React',
+      category: p.category || 'Flask',
     })
   }
 
@@ -69,7 +69,7 @@ export default function AdminProjects() {
     } else {
       const { data, error } = await createProject(payload)
       if (error) setMessage(error.message)
-      else { setMessage('Added.'); setForm({ title: '', description: '', image_url: '', tags: [], live_url: '', github_url: '', status: 'Live', category: 'React' }); load() }
+      else { setMessage('Added.'); setForm({ title: '', description: '', image_url: '', tags: [], live_url: '', github_url: '', status: 'Live', category: 'Flask' }); load() }
     }
   }
 
@@ -145,14 +145,14 @@ export default function AdminProjects() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm text-slate-400 mb-1">Category</label>
-              <select name="category" value={form.category} onChange={handleChange} className="w-full bg-white/5 border border-primary/20 rounded-xl px-4 py-2 text-white">
-                {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              <select name="category" value={form.category} onChange={handleChange} className="admin-select w-full bg-gray-800 border border-primary/20 rounded-xl px-4 py-2 text-white">
+                {CATEGORIES.map((c) => <option key={c} value={c} className="bg-gray-800 text-white">{c}</option>)}
               </select>
             </div>
             <div>
               <label className="block text-sm text-slate-400 mb-1">Status</label>
-              <select name="status" value={form.status} onChange={handleChange} className="w-full bg-white/5 border border-primary/20 rounded-xl px-4 py-2 text-white">
-                {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+              <select name="status" value={form.status} onChange={handleChange} className="admin-select w-full bg-gray-800 border border-primary/20 rounded-xl px-4 py-2 text-white">
+                {STATUSES.map((s) => <option key={s} value={s} className="bg-gray-800 text-white">{s}</option>)}
               </select>
             </div>
           </div>

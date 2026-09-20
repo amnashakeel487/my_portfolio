@@ -426,3 +426,33 @@ section {
   background: rgba(59, 130, 246, 0.3);
   color: white;
 }
+/* ── Admin Panel Dropdown Fixes ── */
+select option {
+  background-color: #1f2937 !important;
+  color: white !important;
+}
+
+select option:hover {
+  background-color: #374151 !important;
+}
+
+select option:checked,
+select option:focus {
+  background-color: #4f46e5 !important;
+  color: white !important;
+}
+
+/* For webkit browsers */
+select {
+  color-scheme: dark;
+}
+
+/* Ensure dropdown text is visible */
+.admin-select option {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+.admin-select option:hover {
+  background: #374151;
+}
