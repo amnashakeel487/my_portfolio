@@ -365,8 +365,12 @@ function ProjectsSection({ projects }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.length > 0 ? (
-            projects.slice(0, 6).map((project) => (
-              <div key={project.id} className="group bg-gray-800/50 backdrop-blur border border-gray-700 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
+            projects.map((project) => (
+              <div 
+                key={project.id} 
+                className="group bg-gray-800/50 backdrop-blur border border-gray-700 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 cursor-pointer"
+                onClick={() => window.open(`/project/${project.id}`, '_blank')}
+              >
                 {project.image_url && (
                   <div className="aspect-video overflow-hidden">
                     <img 
@@ -511,14 +515,7 @@ function ServicesSection({ services }) {
 
 // Skills Section Component
 function SkillsSection({ skills }) {
-  const skillCategories = skills.reduce((acc, skill) => {
-    const category = skill.category || 'Other'
-    if (!acc[category]) acc[category] = []
-    acc[category].push(skill)
-    return acc
-  }, {})
-
-  // Default skills if none exist
+  // Always use comprehensive default skills regardless of database content
   const defaultSkills = {
     'Backend & Web Development': [
       'Python', 'Flask', 'REST API Design', 'JWT Authentication', 'SQLAlchemy', 'PostgreSQL', 
@@ -547,7 +544,8 @@ function SkillsSection({ skills }) {
     ]
   }
 
-  const displaySkills = Object.keys(skillCategories).length > 0 ? skillCategories : defaultSkills
+  // Always display the comprehensive default skills
+  const displaySkills = defaultSkills
 
   return (
     <section id="skills" className="py-12 bg-gray-900 relative overflow-hidden">
@@ -608,7 +606,7 @@ function SkillsSection({ skills }) {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-white">{category}</h3>
-                    <p className="text-xs text-gray-400">{Array.isArray(categorySkills) ? categorySkills.length : categorySkills.length} skills</p>
+                    <p className="text-xs text-gray-400">{categorySkills.length} skills</p>
                   </div>
                 </div>
                 <div className="flex-1 h-px bg-gradient-to-r from-blue-500/30 to-transparent"></div>
@@ -616,22 +614,19 @@ function SkillsSection({ skills }) {
 
               {/* Skills Pills */}
               <div className="flex flex-wrap gap-3">
-                {(Array.isArray(categorySkills) ? categorySkills : categorySkills).map((skill, index) => {
-                  const skillName = typeof skill === 'string' ? skill : skill.name
-                  return (
-                    <div
-                      key={index}
-                      className="group bg-gray-800/40 hover:bg-gray-700/50 border border-gray-600/50 hover:border-blue-500/50 rounded-lg px-4 py-2.5 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-blue-400 group-hover:bg-blue-300 transition-colors"></div>
-                        <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors">
-                          {skillName}
-                        </span>
-                      </div>
+                {categorySkills.map((skillName, index) => (
+                  <div
+                    key={index}
+                    className="group bg-gray-800/40 hover:bg-gray-700/50 border border-gray-600/50 hover:border-blue-500/50 rounded-lg px-4 py-2.5 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-blue-400 group-hover:bg-blue-300 transition-colors"></div>
+                      <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors">
+                        {skillName}
+                      </span>
                     </div>
-                  )
-                })}
+                  </div>
+                ))}
               </div>
             </div>
           ))}
